@@ -1,0 +1,216 @@
+/* Variables y colores generales */
+:root {
+    --color-primary: #432818;   /* Café oscuro */
+    --color-needs: #432818;     /* Café oscuro */
+    --color-wants: #e07a5f;     /* Salmón */
+    --color-savings: #adc178;   /* Verde claro */
+    
+    --color-bg: #F4F4F4;
+    --color-text: #121212;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    padding-top: 80px; /* Espacio para el navbar fijo */
+}
+
+/* === NAVBAR Y OFFCANVAS (CONSERVADOS) === */
+.navbar-custom {
+    background-color: var(--color-primary);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+.navbar-brand, .nav-link {
+    color: white !important;
+}
+.offcanvas-header {
+    background-color: var(--color-primary);
+    color: white;
+}
+.offcanvas-title {
+    color: white;
+}
+
+/* === TARJETA PRINCIPAL === */
+.calculator-card {
+    background-color: white;
+    border-radius: 20px;
+    padding: 40px;
+    border: none;
+}
+
+.main-title {
+    color: var(--color-primary);
+    font-weight: 700;
+}
+
+/* === BOTÓN DE CALCULAR === */
+.btn-calculate {
+    background-color: var(--color-savings); /* Amarillo llamativo */
+    color: var(--color-primary);
+    font-weight: 700;
+    border: none;
+    border-radius: 50px;
+    transition: transform 0.2s;
+}
+.btn-calculate:hover {
+    background-color: #dde5b6;
+    transform: scale(1.02);
+}
+
+/* === ESTILOS DE RESULTADOS (LAS 3 TARJETAS) === */
+.result-card {
+    border: none;
+    background-color: #f9f9f9;
+    border-radius: 15px;
+    transition: transform 0.3s;
+}
+.result-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+
+/* Bordes superiores de colores */
+.border-needs { border-top: 5px solid var(--color-needs); }
+.border-wants { border-top: 5px solid var(--color-wants); }
+.border-savings { border-top: 5px solid var(--color-savings); }
+
+/* Textos de colores */
+.text-needs { color: var(--color-needs); }
+.text-wants { color: var(--color-wants); }
+.text-savings { color: #dcb342; /* Un poco más oscuro para leerse bien */ }
+
+/* Círculos de iconos */
+.icon-circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+}
+.bg-needs { background-color: var(--color-needs); }
+.bg-wants { background-color: var(--color-wants); }
+.bg-savings { background-color: var(--color-savings); }
+
+/* === GRÁFICO DE PASTEL (CSS PURO) === */
+.chart-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.pie-chart {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    /* Truco de CSS para hacer un gráfico circular con gradiente cónico */
+    background: conic-gradient(
+        var(--color-needs) 0% 50%,   /* 0 a 50% Azul */
+        var(--color-wants) 50% 80%,  /* 50 a 80% Aqua (30% total) */
+        var(--color-savings) 80% 100% /* 80 a 100% Amarillo (20% total) */
+    );
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    position: relative;
+}
+/* Agujero del centro para hacerlo "Donut Chart" */
+.pie-chart::after {
+    content: "FINXIME";
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120px; height: 120px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: var(--color-primary);
+}
+
+/* Animación simple */
+.animate-fade-in {
+    animation: fadeIn 0.8s ease-in-out;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Ajustes Móviles */
+@media (max-width: 768px) {
+    .calculator-card { padding: 20px; }
+    .display-6 { font-size: 1.5rem; }
+}
+
+/* MEDIAS QUERIES PARA DIFERENTES DISPOSITIVOS*/
+
+/* Ajusta el color del body, al cambiar el tamaño de la página*/
+
+/* PANTALLA PEQUEÑA */
+
+@media (max-width: 700px){
+  body{
+    background-color:#afacae;
+    flex-direction: row;
+  }
+}
+
+/* PANTALLA MEDIANA */
+
+@media (min-width: 900px){
+  body{
+    background-color:#bea693;
+    flex-direction: column;
+  }
+}
+
+/* PANTALLA GRANDE */
+
+@media (min-width: 1200px){
+  body{
+    background-color:#ebc1e3;
+    flex-direction: column;
+  }
+}
+
+/* PANTALLA EXTRA GRANDE */
+
+@media (min-width: 1500px){
+  body{
+    background-color:#faf0ca;
+    flex-direction: column;
+  }
+}
+
+footer{
+  background: white;
+  color:#432818;
+  text-align:center;
+  padding: 2rem;
+  margin-top: 2rem;
+}
+
+.social{
+  display:flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.social a{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background: #b7a59b;
+  color:#432818;
+  border-radius: 50%;
+  text-decoration: none;
+  font-size:1.5rem;
+}
