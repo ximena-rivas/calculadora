@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de salud financiera personal</title>
+    
+    <!-- Enlace a Bootstrap para la rejilla y componentes -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Cargamos una fuente amigable y profesional -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- ENLACE A LOS ESTILOS EXTERNOS (CSS) -->
+    <link rel="stylesheet" href="css/style1.css">
+</head>
+<body>
+
+    <!--
+    ==================================================
+    === NAVEGACIÓN RESPONSIVE (USANDO BOOTSTRAP GRID)
+    ==================================================
+    -->
+    <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+        <div class="container-fluid">
+            <!-- Marca de la Aplicación -->
+            <a class="navbar-brand" href="#">Mi calculadora</a> <!-- aquí 
+            vamos agregar un logo -->
+            
+            <!-- Botón de Toggler: Ahora abre el Offcanvas en móvil -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMenu" aria-controls="offcanvasMenu" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <!-- Menú de Desktop: Solo visible cuando el navbar está expandido (>= lg) -->
+            <div class="collapse navbar-collapse" id="navbarNavDesktop">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#calculadora">Mi solvencia</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Plan de ahorro</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contacto">Contactos</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <!--
+    ==================================================
+    === OFFCANVAS (MENÚ LATERAL PARA MÓVILES < LG)
+    ==================================================
+    Este menú se desliza desde la derecha y se cierra automáticamente al hacer clic en un link.
+    -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasMenu" aria-labelledby="offcanvasMenuLabel">
+      <div class="offcanvas-header"> <!-- Estilos aplicados en styles.css -->
+        <h5 class="offcanvas-title" id="offcanvasMenuLabel">Menú de solvencia</h5>
+        <!-- btn-close-white se usa para que el ícono de cierre sea blanco sobre fondo azul -->
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <!-- Los links se cierran automáticamente al hacer click (data-bs-dismiss) -->
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#calculadora" data-bs-dismiss="offcanvas">Mi solvencia</a>
+            </li>
+            <li class="nav-item">
+                <li class="nav-item"><a class="nav-link" href="index1.html">¿Cómo yo utilizo la regla 50/30/20?</a></li>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#contacto" data-bs-dismiss="offcanvas">Contactos</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+
+
+    <!--
+    ==================================================
+    === CUERPO PRINCIPAL: CALCULADORA PERSONAL
+    ==================================================
+    -->
+    <div class="container my-5" id="calculadora">
+        <div class="calculator-card">
+            <h1 class="title">CALCULADORA</h1>
+            <p class="subtitle">Analiza tu flujo de dinero como estudiante.</p>
+            <p class="subtitle-description text-muted">Esta calculadora rápida te ayuda a ver si tus apoyos, becas o trabajos temporales alcanzan para lo esencial y qué margen tienes para ahorrar o disfrutar sin preocuparte.</p>
+            
+            <div class="row g-4">
+                <!-- Inputs adaptados a Finanzas Personales -->
+                <!-- Sistema de Rejilla: Se adapta a Móvil, Tablet y Desktop -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <label for="monthlyIncome" class="form-label">Ingresos semanales</label>
+                    <input type="number" class="form-control" id="monthlyIncome" placeholder="Ej: 15,000" min="0">
+                    <small class="text-muted">Apoyo familar, beca, extra.</small>
+                </div>
+                
+                <div class="col-12 col-md-6 col-lg-4">
+                    <label for="livingExpenses" class="form-label">Gastos básicos</label>
+                    <input type="number" class="form-control" id="livingExpenses" placeholder="Ej: 8,000" min="0">
+                    <small class="text-muted">Comida, transporte, copias, café.</small>
+                </div>
+                
+                <div class="col-12 col-md-6 col-lg-4">
+                    <label for="debtPayments" class="form-label">Compromisos semanales</label>
+                    <input type="number" class="form-control" id="debtPayments" placeholder="Ej: 2,500" min="0">
+                    <small class="text-muted">Suscripciones, salidas, otros.</small>
+                </div>
+
+                <!-- Botón de Acción -->
+                <div class="col-12 mt-4 text-center">
+                    <button class="btn btn-calculate" onclick="calculatePersonalSolvency()">
+                        Analizar mi flujo semanal
+                    </button>
+                </div>
+            </div>
+
+            <!-- Resultado Visual (El Semáforo Financiero) -->
+            <div id="resultContainer" class="d-none">
+                <h3 class="title">Diagnóstico financiero</h3>
+                <div id="resultValue" class="display-4 fw-bold my-2">--</div>
+                <div id="resultAnalysis" class="fw-semibold mt-3">Ingresa tus datos para calcular.</div>
+                
+                <!-- Barra de progreso visual para el nivel de endeudamiento -->
+                <div class="progress mt-4" style="height: 25px;">
+                    <div id="debtProgressBar" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">Nivel de Deuda</div>
+                </div>
+                <small class="text-muted d-block mt-2">Porcentaje de tus ingresos comprometidos en deuda.</small>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Script de Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- ENLACE A LA LÓGICA (JS) -->
+    <script src="js/script1.js"></script>
+
+</body>
+</html>

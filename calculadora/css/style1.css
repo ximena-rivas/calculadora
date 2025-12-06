@@ -1,0 +1,114 @@
+/* ========================================= */
+/* === ESTILOS PERSONALIZADOS Y MEDIA QUERIES === */
+/* ========================================= */
+:root {
+    --color-primary: #432818; /* Café */
+    --color-accent: #adc178; /* Verde pastel */
+    --color-dark: #233036;
+    --color-success: #3a5a40; /* Verde oscuro para "good" */
+    --color-warning: #fa8d34; /* Naranja para "warning" */
+    --color-danger: #d42c3d; /* Rojo para "danger" */
+    --color-bg: #faf0ca; /* Amarillo pastel */
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--color-bg);
+    color: var(--color-dark);
+    padding-top: 60px;
+}
+
+/* Navbar personalizado */
+.navbar-custom {
+    background-color: var(--color-primary);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+.navbar-custom .nav-link, .navbar-custom .navbar-brand {
+    color: #ffffff;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+.navbar-custom .nav-link:hover {
+    color: var(--color-accent);
+}
+.navbar-custom .navbar-brand {
+    font-weight: 700;
+}
+
+/* Tarjeta Principal */
+.calculator-card {
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    margin: 40px auto;
+    max-width: 900px;
+    border-top: 5px solid var(--color-primary); /* Línea azul corporativa */
+}
+
+.title {
+    color: var(--color-primary);
+    font-weight: 800;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    color: #495057;
+}
+
+.form-control {
+    border-radius: 8px;
+    padding: 12px;
+    border: 1px solid #ced4da;
+    transition: border-color 0.3s;
+}
+.form-control:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 0.2rem rgba(0, 68, 129, 0.25);
+}
+
+/* Botón llamativo (usando el color de acento) */
+.btn-calculate {
+    background-color: var(--color-accent);
+    color: var(--color-primary); /* Texto azul sobre fondo amarillo */
+    font-weight: 700;
+    padding: 12px 30px;
+    border-radius: 50px;
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn-calculate:hover {
+    background-color: #dde5b6; /* Un tono un poco más claro al hacer hover */
+    color: var(--color-primary);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(172, 239, 165, 0.4);
+}
+
+/* Contenedor de Resultados */
+#resultContainer {
+    margin-top: 35px;
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    background-color: #e9ecef; /* Fondo de resultado ligeramente gris */
+    border: 1px solid #dee2e6;
+}
+
+/* Colores de estado para el resultado */
+.text-excellent { color: var(--color-success); }
+.text-warning { color: var(--color-warning); }
+.text-danger { color: var(--color-danger); }
+
+/* MEDIA QUERIES PARA ADAPTABILIDAD */
+@media (max-width: 768px) {
+    .calculator-card {
+        padding: 20px;
+        margin: 20px 10px;
+    }
+    .subtitle-description {
+        display: none; /* Ocultar descripción larga en móvil */
+    }
+    .display-4 {
+        font-size: 2rem; /* Texto más pequeño en móvil */
+    }
+}
